@@ -14,5 +14,6 @@ workflows:
           registry-name: beekeepertest
           repo: circleci-game
           tag: latest
-          azure-password: AZURE_PASSWORD
-          azure-username: AZURE_USERNAME
+          azure-sp: AZURE_SP
+          azure-sp-password: AZURE_SP_PASSWORD
+          azure-sp-tenant: AZURE_SP_TENANT
