@@ -22,7 +22,7 @@ jobs:
           working_directory: Tailsping.SpaceGame.Test
       - run:
           name: "Run application tests"
-          command: dotnet.exe test -v n --results-directory:test_coverage --collect:"Code Coverage"
+          command: dotnet.exe test -v n --results-directory:test_coverage
           working_directory: Tailsping.SpaceGame.Test
       - run:
           name: "Pring Working Directory"
