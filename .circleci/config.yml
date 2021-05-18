@@ -24,7 +24,7 @@ jobs:
           name: "Run application tests"
           command: dotnet.exe test -v n --results-directory:test_coverage
           working_directory: Tailsping.SpaceGame.Test
-      - run: dir Tailsping.SpaceGame.Test
+      - run: dir Tailsping.SpaceGame.Test\test_coverage
       - store_artifacts:
           path: C:\Users\circleci\project\test_coverage
       - store_test_results:
