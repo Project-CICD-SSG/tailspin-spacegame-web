@@ -9,9 +9,10 @@ workflows:
   build-and-publish-docker-image:
     jobs:
       - azure-acr/build-and-push-image:
+          checkout: true
           login-server-name: beekeepertest.azurecr.io
           registry-name: beekeepertest
           repo: circleci-game
           tag: latest
-          azure-password: beeadmin
-          azure-username: FS03Dbp7ZhUQLDsk+gM2IvWPbtlxymBV
+          azure-password: AZURE_PASSWORD
+          azure-username: AZURE_USERNAME
