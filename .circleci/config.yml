@@ -4,10 +4,37 @@ version: 2.1
 orbs:
   # Declare a dependency on the welcome-orb
   azure-acr: circleci/azure-acr@0.2.0 
+  windows: circleci/windows@2.4.0
 
-workflows:
-  build-and-publish-docker-image:
-    jobs:
+jobs:
+  test:
+    description: Setup and run application tests 
+    executor: 
+      name: windows/default
+    steps:
+      - checkout
+      #- restore_cache:
+      #    keys:
+      #      - dotnet-packages-v1-{{ checksum "Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj"}}
+      - run:
+          name: "Install project dependencies"
+          command: dotnet.exe restore 
+      #- save_cache:
+      #    paths:
+      - run:
+          name: "Run application tests"
+          command: dotnet.exe test -v n --results-directory:test_coverage --collect:"Code Coverage"
+      - run:
+          name: "Pring Working Directory"
+          command: pwd 
+      - store_artifacts:
+          path: C:\Users\circleci\project\test_coverage 
+
+  build-and-push:
+    description: Build Docker container image and push to registry
+    executor:
+      name: azure-acr/default
+    steps:
       - azure-acr/build-and-push-image:
           checkout: true
           login-server-name: beekeepertest.azurecr.io
@@ -18,3 +45,11 @@ workflows:
           azure-sp-password: AZURE_SP_PASSWORD
           azure-sp-tenant: AZURE_SP_TENANT
           dockerfile: ./Tailspin.SpaceGame.Web/Dockerfile
+
+workflows:
+  test_and_build:
+    jobs:
+      - test
+      - build-and-push:
+          requires: 
+            - test
