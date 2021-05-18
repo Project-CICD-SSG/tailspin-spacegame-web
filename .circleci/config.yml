@@ -18,12 +18,14 @@ jobs:
       #      - dotnet-packages-v1-{{ checksum "Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj"}}
       - run:
           name: "Install project dependencies"
-          command: dotnet.exe restore 
+          command: dotnet restore
+          working_directory: Tailspin.SpaceGame.Web
       #- save_cache:
       #    paths:
       - run:
           name: "Run application tests"
           command: dotnet.exe test -v n --results-directory:test_coverage --collect:"Code Coverage"
+          working_directory: Tailsping.SpaceGame.Test
       - run:
           name: "Pring Working Directory"
           command: pwd 
