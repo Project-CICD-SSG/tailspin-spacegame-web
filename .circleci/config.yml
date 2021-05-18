@@ -26,10 +26,10 @@ jobs:
           working_directory: Tailsping.SpaceGame.Test
       - run:
           name: "Pring Working Directory"
-          command: pwd 
-      - store_test_results:
-          path: C:\Users\circleci\project\test_coverage
+          command: dir 
       - store_artifacts:
+          path: C:\Users\circleci\project\test_coverage
+      - store_test_results:
           path: C:\Users\circleci\project\test_coverage
 
   build-and-push:
