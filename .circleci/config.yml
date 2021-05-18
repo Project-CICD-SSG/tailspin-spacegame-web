@@ -17,3 +17,4 @@ workflows:
           azure-sp: AZURE_SP
           azure-sp-password: AZURE_SP_PASSWORD
           azure-sp-tenant: AZURE_SP_TENANT
+          dockerfile: ./Tailspin.SpaceGame.Web/Dockerfile
