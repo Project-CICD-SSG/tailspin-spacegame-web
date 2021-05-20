@@ -34,10 +34,6 @@ jobs:
           command: dotnet build 
           working_directory: Tailsping.SpaceGame.Test
       - run:
-          name: "Run application tests"
-          command: dotnet.exe test -v n --results-directory:test_coverage --collect:"Code Coverage"
-          working_directory: Tailsping.SpaceGame.Test
-      - run:
           name: "JUNIT tests"
           command: dotnet test --logger "junit;LogFilePath=Junit/results.xml"
           working_directory: Tailsping.SpaceGame.Test          
