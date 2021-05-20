@@ -51,7 +51,7 @@ jobs:
     steps:
       - run:
           name: "Kick off new pipeline"
-          command: curl --location --request POST 'https://circleci.com/api/v2/project/github/Project-CICD-SSG/tailspin-spacegame-web/pipeline' -u "${API_TOKEN}:"
+          command: curl --location --request POST 'https://circleci.com/api/v2/project/github/northpoint/tailspin-spacegame-api/pipeline' -u "${API_TOKEN}:"
 
 
   build-and-push:
