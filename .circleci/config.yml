@@ -7,6 +7,19 @@ orbs:
   windows: circleci/windows@2.4.0
 
 jobs:
+  Build:
+    description: Build Application 
+    executor: 
+      name: windows/default
+    steps:
+      - checkout
+      - run:
+          name: "Install project dependencies"
+          command: dotnet restore
+          working_directory: Tailspin.SpaceGame.Web       
+      - run: 
+          command: dotnet build 
+          working_directory: Tailsping.SpaceGame.Web
   test:
     description: Setup and run application tests 
     executor: 
@@ -22,8 +35,11 @@ jobs:
           working_directory: Tailsping.SpaceGame.Test
       - run:
           name: "Run application tests"
-          command: dotnet.exe test -v n --results-directory:test_coverage
+          command: dotnet.exe test -v n --results-directory:test_coverage --collect:"Code Coverage"
           working_directory: Tailsping.SpaceGame.Test
+      - run: pwd
+      - run: dir C:\Users\circleci\project\
+      - run: dir C:\Users\circleci\project\test_coverage
       - run: dir Tailsping.SpaceGame.Test\test_coverage
       - store_artifacts:
           path: C:\Users\circleci\project\test_coverage
@@ -49,7 +65,9 @@ jobs:
 workflows:
   test_and_build:
     jobs:
+      - build
       - test
       - build-and-push:
           requires: 
+            - build
             - test
