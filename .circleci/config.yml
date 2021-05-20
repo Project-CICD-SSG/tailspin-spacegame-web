@@ -7,7 +7,7 @@ orbs:
   windows: circleci/windows@2.4.0
 
 jobs:
-  dockerbuild:
+  Build:
     description: Build Application using docker image
     docker:
       - image: mcr.microsoft.com/dotnet/sdk:3.1
@@ -19,20 +19,7 @@ jobs:
           working_directory: Tailspin.SpaceGame.Web       
       - run: 
           command: dotnet build 
-          working_directory: Tailspin.SpaceGame.Web
-  Build:
-    description: Build Application 
-    executor: 
-      name: windows/default
-    steps:
-      - checkout
-      - run:
-          name: "Install project dependencies"
-          command: dotnet restore
-          working_directory: Tailspin.SpaceGame.Web       
-      - run: 
-          command: dotnet build 
-          working_directory: Tailspin.SpaceGame.Web          
+          working_directory: Tailspin.SpaceGame.Web        
   test:
     description: Setup and run application tests 
     docker:
@@ -84,7 +71,6 @@ workflows:
   test_and_build:
     jobs:
       - Build
-      - dockerbuild
       - test:
           requires: 
             - Build
