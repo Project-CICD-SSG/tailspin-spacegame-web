@@ -71,5 +71,4 @@ workflows:
             - Build
       - build-and-push:
           requires: 
-            - Build
             - test
