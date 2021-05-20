@@ -37,10 +37,14 @@ jobs:
           name: "Run application tests"
           command: dotnet.exe test -v n --results-directory:test_coverage --collect:"Code Coverage"
           working_directory: Tailsping.SpaceGame.Test
+      - run:
+          name: "JUNIT tests"
+          command: dotnet test --logger "junit;LogFilePath=Junit/results.xml"
+          working_directory: Tailsping.SpaceGame.Test          
       - store_artifacts:
           path: C:\Users\circleci\project\Tailsping.SpaceGame.Test\bin\Debug\netcoreapp3.1\
       - store_test_results:
-          path: C:\Users\circleci\project\Tailsping.SpaceGame.Test\test_coverage\
+          path: C:\Users\circleci\project\Tailsping.SpaceGame.Test\Junit\
           
   pipeline_trigger:
     docker:
