@@ -35,8 +35,8 @@ jobs:
           working_directory: Tailspin.SpaceGame.Web          
   test:
     description: Setup and run application tests 
-    executor: 
-      name: windows/default
+    docker:
+      - image: mcr.microsoft.com/dotnet/sdk:3.1
     steps:
       - checkout
       - run:
