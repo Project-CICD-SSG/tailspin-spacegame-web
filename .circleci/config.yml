@@ -45,7 +45,7 @@ jobs:
           path: C:\Users\circleci\project\Tailsping.SpaceGame.Test\bin\Debug\netcoreapp3.1\
       - store_test_results:
           path: C:\Users\circleci\project\Tailsping.SpaceGame.Test\test_coverage\
-  pipline_trigger:
+  pipeline_trigger:
     docker:
       - image: cimg/go:1.16
     steps:
@@ -80,7 +80,7 @@ workflows:
       - build-and-push:
           requires: 
             - test
-      - pipline_trigger:
+      - pipeline_trigger:
           requires: 
             - build-and-push      
         
