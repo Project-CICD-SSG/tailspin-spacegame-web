@@ -19,7 +19,7 @@ jobs:
           working_directory: Tailspin.SpaceGame.Web       
       - run: 
           command: dotnet build 
-          working_directory: Tailsping.SpaceGame.Web
+          working_directory: Tailspin.SpaceGame.Web
   test:
     description: Setup and run application tests 
     executor: 
@@ -39,12 +39,12 @@ jobs:
           working_directory: Tailsping.SpaceGame.Test
       - run: pwd
       - run: dir C:\Users\circleci\project\
-      - run: dir C:\Users\circleci\project\test_coverage
-      - run: dir Tailsping.SpaceGame.Test\test_coverage
+      - run: dir  C:\Users\circleci\project\Tailsping.SpaceGame.Test\
+      - run: dir  C:\Users\circleci\project\Tailsping.SpaceGame.Test\test_coverage
       - store_artifacts:
-          path: C:\Users\circleci\project\test_coverage
+          path: C:\Users\circleci\project\Tailsping.SpaceGame.Test\bin\Debug\netcoreapp3.1\
       - store_test_results:
-          path: C:\Users\circleci\project\test_coverage
+          path: C:\Users\circleci\project\Tailsping.SpaceGame.Test\test_coverage\
 
   build-and-push:
     description: Build Docker container image and push to registry
