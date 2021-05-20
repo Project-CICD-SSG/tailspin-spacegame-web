@@ -67,6 +67,8 @@ workflows:
     jobs:
       - Build
       - test
+          requires: 
+            - Build
       - build-and-push:
           requires: 
             - Build
