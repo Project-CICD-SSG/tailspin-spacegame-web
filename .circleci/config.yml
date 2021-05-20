@@ -50,9 +50,10 @@ jobs:
       - image: cimg/go:1.16
     steps:
       - run:
-        name: Kick off new pipeline
-        command:curl --location --request POST 'https://circleci.com/api/v2/project/github/Project-CICD-SSG/tailspin-spacegame-web/pipeline' --header 'Content-Type: application/json' \
-    -u "${API_TOKEN}:"    
+          name: "Kick off new pipeline"
+          command: curl --location --request POST 'https://circleci.com/api/v2/project/github/Project-CICD-SSG/tailspin-spacegame-web/pipeline' -u "${API_TOKEN}:"
+
+
   build-and-push:
     description: Build Docker container image and push to registry
     executor:
