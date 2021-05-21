@@ -6,11 +6,16 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
+RUN dir
 WORKDIR /src
 COPY ["Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj", "Tailspin.SpaceGame.Web/"]
+RUN dir
 RUN dotnet restore "Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj"
+RUN dir
 COPY . .
+RUN dir
 WORKDIR "/src/Tailspin.SpaceGame.Web"
+RUN dir
 RUN dotnet build "Tailspin.SpaceGame.Web.csproj" -c Release -o /app/build
 
 FROM build AS publish
